@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import TravelSearchForm from "@/components/TravelSearchForm";
 import heroCoupleDoc from "@/assets/hero-couple-dock.jpg";
 import heroBungalows from "@/assets/hero-bungalows.jpg";
 import heroMountainSafari from "@/assets/hero-mountain-safari.jpg";
@@ -7,7 +8,8 @@ import heroMountainSafari from "@/assets/hero-mountain-safari.jpg";
 const HeroSection = () => {
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      {/* Main Hero Content */}
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 lg:mb-16">
         {/* Left Content */}
         <div className="space-y-6 lg:space-y-8">
           <div className="space-y-4">
@@ -64,6 +66,11 @@ const HeroSection = () => {
           {/* Decorative gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl lg:rounded-3xl pointer-events-none" />
         </div>
+      </div>
+
+      {/* Travel Search Form */}
+      <div className="relative z-10">
+        <TravelSearchForm />
       </div>
     </section>
   );
