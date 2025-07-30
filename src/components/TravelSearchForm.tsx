@@ -1,168 +1,126 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { 
-  Bed, 
-  Plane, 
-  Car, 
-  MapPin, 
-  Calendar,
-  Users,
-  Search,
-  ArrowUpDown,
-  Mountain
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+'use client'
 
-const TravelSearchForm = () => {
+import { useState } from "react"
+import { format } from "date-fns"
+import {
+  MapPin,
+  CalendarDays,
+  UserRound,
+  ArrowLeftRight ,
+  Search
+} from "lucide-react"
+
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+export default function TravelSearchForm() {
+  const [checkInDate, setCheckInDate] = useState<Date | undefined>()
+  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>()
+
   return (
-    <Card className="w-full max-w-6xl mx-auto bg-background/95 backdrop-blur-sm border shadow-lg">
-      <CardContent className="p-6">
-        {/* Service Tabs */}
-        <Tabs defaultValue="flight" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-6">
-            <TabsTrigger value="hotels" className="flex items-center gap-2">
-              <Bed className="h-4 w-4" />
-              <span className="hidden sm:inline">Hotels</span>
-            </TabsTrigger>
-            <TabsTrigger value="flight" className="flex items-center gap-2">
-              <Plane className="h-4 w-4" />
-              <span className="hidden sm:inline">Flight</span>
-            </TabsTrigger>
-            <TabsTrigger value="rental" className="flex items-center gap-2">
-              <Car className="h-4 w-4" />
-              <span className="hidden sm:inline">Rental</span>
-            </TabsTrigger>
-            <TabsTrigger value="experiences" className="flex items-center gap-2">
-              <Mountain className="h-4 w-4" />
-              <span className="hidden sm:inline">Experiences</span>
-            </TabsTrigger>
-            <TabsTrigger value="transfer" className="flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              <span className="hidden sm:inline">Transfer</span>
-            </TabsTrigger>
-          </TabsList>
+    <div className="flex items-center lg:w-[1200px] border  justify-between gap-4 px-6 py-4 rounded-full bg-white/20 backdrop-blur-[64px] shadow-[0px_10px_10px_-5px_#0000000A,0px_20px_25px_-5px_#0000001A] max-w-screen-xl mx-auto">
+      {/* Where From */}
+      <div className="flex items-center gap-2 w-full  max-w-[200px]">
+        <MapPin className="text-gray-500 w-5 h-5" />
+        <div>
+          <p className="text-sm font-semibold text-gray-900">Where From</p>
+          <Input
+            placeholder="Search for an airport"
+            className="border-none p-0 h-auto text-sm text-gray-500 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
+      </div>
 
-          <TabsContent value="flight" className="space-y-4">
-            {/* Trip Type Selection */}
-            <RadioGroup defaultValue="round-trip" className="flex gap-6">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="round-trip" id="round-trip" />
-                <Label htmlFor="round-trip" className="flex items-center gap-2">
-                  <ArrowUpDown className="h-4 w-4" />
-                  Round Trip
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="one-way" id="one-way" />
-                <Label htmlFor="one-way">One Way</Label>
-              </div>
-            </RadioGroup>
+      {/* Swap */}
+      <div className="flex items-center justify-center">
+        <Button variant="ghost" size="icon" className="rounded-full border border-gray-200">
+          <ArrowLeftRight  className="w-4 h-4 text-orange-500" />
+        </Button>
+      </div>
 
-            {/* Search Form */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-              {/* Where From */}
-              <div className="space-y-2">
-                <Label htmlFor="from" className="text-sm font-medium">Where From</Label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="from"
-                    placeholder="Search for an airport"
-                    className="pl-10"
-                  />
-                </div>
-              </div>
+      {/* Where To */}
+      <div className="flex items-center gap-2 w-full  max-w-[200px]">
+        <MapPin className="text-gray-500 w-5 h-5" />
+        <div>
+          <p className="text-sm font-semibold text-gray-900">Where To</p>
+          <Input
+            placeholder="Search for an airport"
+            className="border-none p-0 h-auto text-sm text-gray-500 bg-transparent shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
+      </div>
 
-              {/* Where To */}
-              <div className="space-y-2">
-                <Label htmlFor="to" className="text-sm font-medium">Where To</Label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="to"
-                    placeholder="Search for an airport"
-                    className="pl-10"
-                  />
-                </div>
-              </div>
-
-              {/* Check In */}
-              <div className="space-y-2">
-                <Label htmlFor="checkin" className="text-sm font-medium">Check in</Label>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="checkin"
-                    placeholder="Add date"
-                    className="pl-10"
-                    type="date"
-                  />
-                </div>
-              </div>
-
-              {/* Check Out */}
-              <div className="space-y-2">
-                <Label htmlFor="checkout" className="text-sm font-medium">Check out</Label>
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="checkout"
-                    placeholder="Add date"
-                    className="pl-10"
-                    type="date"
-                  />
-                </div>
-              </div>
-
-              {/* Travelers & Class */}
-              <div className="space-y-2">
-                <Label htmlFor="travelers" className="text-sm font-medium">Travelers & Class</Label>
-                <div className="relative">
-                  <Users className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="travelers"
-                    placeholder="Add Travelers"
-                    className="pl-10"
-                  />
-                </div>
-              </div>
+      {/* Check In */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 text-left p-0 hover:bg-transparent"
+          >
+            <CalendarDays className="text-gray-500 w-5 h-5" />
+            <div>
+              <p className="text-sm font-semibold text-gray-900">Check in</p>
+              <p className="text-sm text-gray-500">
+                {checkInDate ? format(checkInDate, "PPP") : "Add date"}
+              </p>
             </div>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={checkInDate}
+            onSelect={setCheckInDate}
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
 
-            {/* Search Button */}
-            <div className="flex justify-center pt-4">
-              <Button 
-                size="lg" 
-                className="bg-orange hover:bg-orange/90 text-orange-foreground px-8 py-3 rounded-full"
-              >
-                <Search className="h-5 w-5 mr-2" />
-                Search Flights
-              </Button>
+      {/* Check Out */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            className="flex items-center gap-2 text-left p-0 hover:bg-transparent"
+          >
+            <CalendarDays className="text-gray-500 w-5 h-5" />
+            <div>
+              <p className="text-sm font-semibold text-gray-900">Check out</p>
+              <p className="text-sm text-gray-500">
+                {checkOutDate ? format(checkOutDate, "PPP") : "Add date"}
+              </p>
             </div>
-          </TabsContent>
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={checkOutDate}
+            onSelect={setCheckOutDate}
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
 
-          {/* Other tab contents would be similar */}
-          <TabsContent value="hotels" className="text-center py-8">
-            <p className="text-muted-foreground">Hotel search form coming soon...</p>
-          </TabsContent>
-          
-          <TabsContent value="rental" className="text-center py-8">
-            <p className="text-muted-foreground">Car rental search form coming soon...</p>
-          </TabsContent>
-          
-          <TabsContent value="experiences" className="text-center py-8">
-            <p className="text-muted-foreground">Experience search form coming soon...</p>
-          </TabsContent>
-          
-          <TabsContent value="transfer" className="text-center py-8">
-            <p className="text-muted-foreground">Transfer search form coming soon...</p>
-          </TabsContent>
-        </Tabs>
-      </CardContent>
-    </Card>
-  );
-};
+      {/* Travelers */}
+      <div className="flex items-center gap-2 w-full  max-w-[200px]">
+        <UserRound className="text-gray-500 w-5 h-5" />
+        <div>
+          <p className="text-sm font-semibold text-gray-900">Travelers & Class</p>
+          <p className="text-sm text-gray-500">Add Travelers</p>
+        </div>
+      </div>
 
-export default TravelSearchForm;
+      {/* Search Button */}
+      <Button className="rounded-full bg-orange-500 text-white w-10 h-10 hover:bg-orange-600">
+        <Search className="w-5 h-5" />
+      </Button>
+    </div>
+  )
+}

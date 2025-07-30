@@ -77,8 +77,8 @@ const getCategoryColor = (category: string) => {
 
 const InspirationsSection = () => {
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-      <div className="flex items-center justify-between mb-8">
+    <section className=" bg-[#0D6CB41A]  py-12 lg:py-16">
+      <div className="lg:ps-56 flex items-center justify-between mb-8">
         <div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-2">
             Get inspiration for your next trip
@@ -89,8 +89,8 @@ const InspirationsSection = () => {
         </div>
       </div>
 
-      <Carousel className="w-full">
-        <div className="flex justify-end mb-4 gap-2">
+      <Carousel className="   lg:ps-56">
+        <div className="flex mx-6 justify-end mb-4 gap-2">
           <CarouselPrevious className="static translate-y-0 h-10 w-10" />
           <CarouselNext className="static translate-y-0 h-10 w-10" />
         </div>
@@ -98,64 +98,66 @@ const InspirationsSection = () => {
         <CarouselContent className="-ml-2 md:-ml-4">
           {inspirationData.map((item) => (
             <CarouselItem key={item.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-              <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-                <div className="relative">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  
-                  {/* Category Badge */}
-                  <Badge 
-                    className={`absolute top-4 left-4 ${getCategoryColor(item.category)} border-0`}
-                  >
-                    {item.category}
-                  </Badge>
-                  
-                  {/* Heart Icon */}
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="absolute top-4 right-4 h-8 w-8 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
-                  >
-                    <Heart className="h-4 w-4" />
-                  </Button>
-                </div>
-                
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-4 line-clamp-2 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{item.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      <span>{item.readTime}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-8 w-8">
-                        <AvatarImage src={item.author.avatar} />
-                        <AvatarFallback>{item.author.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                      </Avatar>
-                      <span className="text-sm font-medium">{item.author.name}</span>
-                    </div>
-                    
-                    <Button variant="outline" size="sm" className="text-xs">
-                      Keep Reading
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+           <Card className="relative rounded-3xl min-h-[360px]   group hover:shadow-lg transition-all duration-300">
+  <div className="relative">
+    <div className="aspect-[4/3] o">
+      <img
+        src={item.image}
+        alt={item.title}
+        className="w-full rounded-t-3xl h-full object-cover  transition-transform duration-300"
+      />
+
+      {/* Floating CardContent over the image */}
+      <CardContent className="absolute bottom-0  top-16 left-0   w-full z-50 bg-white p-6 rounded-2xl  translate-y-1/2">
+        <h3 className="font-semibold text-lg mb-4 line-clamp-2 group-hover:text-orange transition-colors">
+          {item.title}
+        </h3>
+
+        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+          <div className="flex items-center gap-1">
+            <Calendar className="h-3 w-3" />
+            <span>{item.date}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="h-3 w-3" />
+            <span>{item.readTime}</span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={item.author.avatar} />
+              <AvatarFallback>
+                {item.author.name.split(" ").map(n => n[0]).join("")}
+              </AvatarFallback>
+            </Avatar>
+            <span className="text-sm font-medium">{item.author.name}</span>
+          </div>
+
+          <Button variant="outline" size="sm" className="text-xs bg-[#E4E6E8]">
+            Keep Reading
+          </Button>
+        </div>
+      </CardContent>
+    </div>
+
+    {/* Category Badge */}
+    <Badge className={`absolute top-4 left-4 ${getCategoryColor(item.category)} border-0`}>
+      {item.category}
+    </Badge>
+
+    {/* Heart Icon */}
+    <Button
+      size="icon"
+      variant="ghost"
+      className="absolute top-4 right-4 h-8 w-8 bg-white/80 hover:bg-white/90 backdrop-blur-sm"
+    >
+      <Heart className="h-4 w-4" />
+    </Button>
+  </div>
+</Card>
+
             </CarouselItem>
           ))}
         </CarouselContent>

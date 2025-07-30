@@ -11,7 +11,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import karibuLogo from "@/assets/karibu-logo.png";
+import karibuLogo from "@/assets/Karibu.png";
 
 const Header = () => {
   const navigationItems = [
@@ -32,16 +32,9 @@ const Header = () => {
             <img 
               src={karibuLogo} 
               alt="Karibu Logo" 
-              className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12"
+              className="  scale-75"
             />
-            <div className="flex flex-col">
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
-                KARIBU
-              </h1>
-              <p className="text-xs sm:text-xs lg:text-sm text-muted-foreground leading-tight hidden sm:block">
-                Unveiling the Wonders of Africa
-              </p>
-            </div>
+       
           </div>
 
           {/* Navigation Menu - Hidden on mobile */}
@@ -50,9 +43,9 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm xl:text-base transition-colors hover:text-primary ${
+                className={`text-sm xl:text-base transition-colors hover:text-[#F3842D] ${
                   item.active
-                    ? "text-primary font-medium"
+                    ? "text-[#F3842D] font-medium"
                     : "text-foreground/80"
                 }`}
               >
@@ -81,10 +74,10 @@ const Header = () => {
 
             {/* Auth Buttons */}
             <div className="hidden sm:flex items-center space-x-2">
-              <Button variant="outline" size="sm" className="hidden md:inline-flex">
+              <Button variant="outline" size="sm" className="hidden rounded-full md:inline-flex">
                 Sign Up
               </Button>
-              <Button size="sm" className="bg-orange text-orange-foreground hover:bg-orange/90">
+              <Button size="sm" className="text-orange-foreground bg-[#F3842D] p-5  rounded-full hover:bg-orange/90">
                 Sign In
               </Button>
             </div>
@@ -104,9 +97,9 @@ const Header = () => {
                       <a
                         key={item.label}
                         href={item.href}
-                        className={`text-base transition-colors hover:text-primary ${
+                        className={`text-base transition-colors hover:text-[#F3842D] ${
                           item.active
-                            ? "text-primary font-medium"
+                            ? "text-[#F3842D] font-medium"
                             : "text-foreground/80"
                         }`}
                       >

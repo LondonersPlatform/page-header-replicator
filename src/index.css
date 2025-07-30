@@ -97,6 +97,15 @@ All colors MUST be HSL.
   }
 }
 
+.fill-current{
+  fill: orange !important
+}
+.text-current{
+color: orange !important
+}
+.border-primary{
+  border-color: orange !important
+}
 @layer base {
   * {
     @apply border-border;

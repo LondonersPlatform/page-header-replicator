@@ -4,18 +4,19 @@ import TravelSearchForm from "@/components/TravelSearchForm";
 import heroCoupleDoc from "@/assets/hero-couple-dock.jpg";
 import heroBungalows from "@/assets/hero-bungalows.jpg";
 import heroMountainSafari from "@/assets/hero-mountain-safari.jpg";
+import TravelTabs from "./TravelTabs";
 
 const HeroSection = () => {
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
+    <section className="container   relative mx-auto px-4 sm:px-6 lg:px-8 py-5">
       {/* Main Hero Content */}
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center mb-12 lg:mb-16">
         {/* Left Content */}
-        <div className="space-y-6 lg:space-y-8">
-          <div className="space-y-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
+        <div className="space-y-6 lg:mx-6 lg:space-y-8">
+          <div className="space-y-5">
+            <h1 className="text-4xl sm:text-5xl py-6 lg:text-6xl xl:text-6xl  text-foreground leading-tight">
               It's A Big World Out There,{" "}
-              <span className="text-primary">Go Explore!</span>
+             Go Explore!
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-lg">
               Making your travel dreams real with top flight deals tailored
@@ -25,16 +26,17 @@ const HeroSection = () => {
           
           <Button 
             size="lg" 
-            className="bg-orange hover:bg-orange/90 text-orange-foreground rounded-full px-8 py-6 text-base sm:text-lg font-medium group"
+            className="bg-[#F3842D] hover:bg-orange/90 text-orange-foreground rounded-full px-8 py-6 text-base sm:text-lg font-medium group"
           >
             get personalized offer
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
+          <TravelTabs />
         </div>
 
         {/* Right Image Grid */}
         <div className="relative">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid items-end grid-cols-2 gap-4">
             {/* Top Left - Couple on dock */}
             <div className="aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden">
               <img
@@ -45,7 +47,7 @@ const HeroSection = () => {
             </div>
 
             {/* Top Right - Mountain safari landscape */}
-            <div className="aspect-[3/4] rounded-2xl lg:rounded-3xl overflow-hidden row-span-2">
+            <div className="aspect-[3/4]   rounded-2xl lg:rounded-3xl overflow-hidden row-span-2">
               <img
                 src={heroMountainSafari}
                 alt="Mountain safari landscape"
@@ -69,7 +71,7 @@ const HeroSection = () => {
       </div>
 
       {/* Travel Search Form */}
-      <div className="relative z-10">
+      <div className=" absolute bottom-[30px] z-10">
         <TravelSearchForm />
       </div>
     </section>
